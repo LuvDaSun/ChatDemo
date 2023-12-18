@@ -3,8 +3,8 @@ import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { ChatModel } from "../index.js";
 
-const componentName = "app-home-route";
-export { Component as HomeRoute };
+const componentName = "app-local-route";
+export { Component as LocalRoute };
 
 @customElement(componentName)
 class Component extends LitElement {
@@ -13,12 +13,13 @@ class Component extends LitElement {
 
   render() {
     return html`
-      <h1>Home</h1>
-      <p>Welcome</p>
+      <h1>Local</h1>
+      <p>In memory chat, no server</p>
       <p>
-        <app-route-link routeKey="local">Local</app-route-link>
-        -
-        <app-route-link routeKey="about">About</app-route-link>
+        <app-chat-part
+          .messageList=${this.messages}
+          @chat-model=${this.onChatModelChatPart}
+        ></app-chat-part>
       </p>
     `;
   }

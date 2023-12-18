@@ -1,7 +1,6 @@
-import * as immutable from "immutable";
 import { LitElement, css, html } from "lit";
-import { customElement, state } from "lit/decorators.js";
-import { ChatForm, defaultChatModel } from "../index.js";
+import { customElement, property } from "lit/decorators.js";
+import { ChatModel, defaultChatModel } from "../index.js";
 
 const componentName = "app-chat-part";
 export { Component as ChatPart };
@@ -24,49 +23,26 @@ class Component extends LitElement {
     }
   `;
 
-  @state()
-  accessor messages = immutable.List<string>([
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-  ]);
-
-  @state()
-  accessor chatModel = defaultChatModel;
+  @property({ attribute: false })
+  accessor messageList: Iterable<string> = [];
 
   render() {
     return html`
       <div class="chat">
-        <app-chat-view .messages=${this.messages}></app-chat-view>
-        <app-chat-form .model=${this.chatModel} @submit=${this.onSubmitChat}></app-chat-form>
+        <app-chat-view .messages=${this.messageList}></app-chat-view>
+        <app-chat-form
+          .initialModel=${defaultChatModel}
+          @model=${this.onModelChatForm}
+        ></app-chat-form>
       </div>
     `;
   }
 
-  private onSubmitChat(event: Event) {
-    const target = event.target as ChatForm;
-    const { model } = target;
+  private onModelChatForm(event: CustomEvent) {
+    const model = event.detail as ChatModel;
 
-    this.messages = this.messages.push(model.message);
-
-    this.chatModel = defaultChatModel;
+    const newEvent = new CustomEvent("chat-model", { detail: model });
+    this.dispatchEvent(newEvent);
   }
 }
 
