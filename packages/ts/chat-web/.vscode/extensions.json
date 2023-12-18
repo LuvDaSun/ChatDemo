@@ -1,8 +1,4 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "streetsidesoftware.code-spell-checker",
-    "runem.lit-plugin"
-  ],
+  "recommendations": ["esbenp.prettier-vscode", "streetsidesoftware.code-spell-checker"],
   "unwantedRecommendations": []
 }

@@ -7,7 +7,6 @@
   ],
   "settings": {
     "window.title": "ChatDemo",
-    "typescript.tsdk": "../node_modules/typescript/lib",
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

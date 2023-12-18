@@ -27,13 +27,13 @@ class Component extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener("click", this.onClick);
+    this.addEventListener("click", this.onClick);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
 
-    window.removeEventListener("click", this.onClick);
+    this.removeEventListener("click", this.onClick);
   }
 
   private onClick = (event: Event) => {
@@ -47,4 +47,10 @@ class Component extends LitElement {
       routing.pushRoute(href, this.routeState);
     }
   };
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    [componentName]: Component;
+  }
 }
