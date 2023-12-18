@@ -1,6 +1,7 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { defineConfig } from "rollup";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 
 export default defineConfig({
   input: "out/browser.js",
@@ -13,5 +14,5 @@ export default defineConfig({
 
   context: "window",
 
-  plugins: [commonjs(), nodeResolve()],
+  plugins: [nodePolyfills(), nodeResolve({ browser: true, mainFields: ["browser"] }), commonjs()],
 });

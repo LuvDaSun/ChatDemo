@@ -13,6 +13,9 @@ class Component extends LitElement {
       <p>
         <app-route-link routeKey="about">About</app-route-link>
       </p>
+      <p>
+        <app-chat-part></app-chat-part>
+      </p>
     `;
   }
 }

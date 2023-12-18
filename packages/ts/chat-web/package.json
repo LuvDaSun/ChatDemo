@@ -52,8 +52,10 @@
     "@types/node": "^20.10.4",
     "@types/yargs": "^17.0.32",
     "goodrouter": "^2.1.2",
+    "immutable": "^5.0.0-beta.4",
     "koa": "^2.14.2",
     "lit": "^3.1.0",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "tslib": "^2.6.2",
     "type-fest": "^4.6.0",
     "yargs": "^17.7.2"

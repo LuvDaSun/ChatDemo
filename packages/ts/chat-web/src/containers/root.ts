@@ -11,7 +11,7 @@ class Component extends LitElement {
     const { routeKey, routeParameters } = routing;
 
     const tagName = `app-${routeKey ?? "default"}-route`;
-    const element = window.document.createElement(tagName);
+    const element = this.ownerDocument.createElement(tagName);
     for (const [key, value] of Object.entries(routeParameters)) {
       element.setAttribute(key, value);
     }
@@ -21,13 +21,13 @@ class Component extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener("routeChanged", this.onRouteChanged);
+    this.ownerDocument.addEventListener("routeChanged", this.onRouteChanged);
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
+    this.ownerDocument.removeEventListener("routeChanged", this.onRouteChanged);
 
-    window.removeEventListener("routeChanged", this.onRouteChanged);
+    super.disconnectedCallback();
   }
 
   private onRouteChanged = () => {

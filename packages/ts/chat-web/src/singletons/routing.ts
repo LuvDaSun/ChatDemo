@@ -39,7 +39,7 @@ export class Routing {
     this.sync();
 
     const event = new Event("routeChanged");
-    this.window.dispatchEvent(event);
+    this.window.document.dispatchEvent(event);
   }
   replaceRoute(href: string, state: Partial<RouteState> = {}) {
     this.window.history.replaceState(state, "", href);
@@ -47,7 +47,7 @@ export class Routing {
     this.sync();
 
     const event = new Event("routeChanged");
-    this.window.window.dispatchEvent(event);
+    this.window.document.dispatchEvent(event);
   }
 
   private sync() {
@@ -59,7 +59,7 @@ export class Routing {
     this.sync();
 
     const event = new Event("routeChanged");
-    this.window.dispatchEvent(event);
+    this.window.document.dispatchEvent(event);
   };
 }
 

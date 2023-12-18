@@ -31,9 +31,9 @@ class Component extends LitElement {
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
-
     this.removeEventListener("click", this.onClick);
+
+    super.disconnectedCallback();
   }
 
   private onClick = (event: Event) => {
