@@ -3,6 +3,10 @@
     {
       "name": "ts/chat-web",
       "path": "./ts/chat-web"
+    },
+    {
+      "name": "ts/chat-api-trpc",
+      "path": "./ts/chat-api-trpc"
     }
   ],
   "settings": {

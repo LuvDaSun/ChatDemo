@@ -18,6 +18,8 @@ class Component extends LitElement {
       <p>
         <app-route-link routeKey="local">Local</app-route-link>
         -
+        <app-route-link routeKey="trpc">Trpc</app-route-link>
+        -
         <app-route-link routeKey="about">About</app-route-link>
       </p>
     `;
