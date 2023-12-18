@@ -13,18 +13,6 @@ class Component extends LitElement {
   @state()
   accessor messages = immutable.List<string>([]);
 
-  private wsClient = createWSClient({
-    url: `ws://localhost:9090`,
-  });
-
-  private trpc = createTRPCProxyClient<Router>({
-    links: [
-      wsLink({
-        client: this.wsClient,
-      }),
-    ],
-  });
-
   render() {
     return html`
       <h1>Trpc</h1>
@@ -38,20 +26,50 @@ class Component extends LitElement {
     `;
   }
 
-  connectedCallback(): void {
-    super.connectedCallback();
+  private trpc?: ReturnType<typeof createTRPCProxyClient<Router>>;
+  private wsClient?: ReturnType<typeof createWSClient>;
+  private unsubscribe?: () => void;
 
-    this.trpc.messages.query().then((messages) => (this.messages = immutable.List(messages)));
+  connectedCallback(): void {
+    this.wsClient = createWSClient({
+      url: `ws://localhost:9090`,
+    });
+    this.trpc = createTRPCProxyClient<Router>({
+      links: [
+        wsLink({
+          client: this.wsClient,
+        }),
+      ],
+    });
+    const { unsubscribe } = this.trpc.messages.subscribe(undefined, {
+      onData: (event) => {
+        switch (event.type) {
+          case "message-snapshot":
+            this.messages = immutable.List(event.messages);
+            break;
+
+          case "message-add":
+            this.messages = this.messages.push(event.message);
+            break;
+        }
+      },
+    });
+    this.unsubscribe = unsubscribe;
+
+    super.connectedCallback();
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
+
+    this.unsubscribe!();
+    this.wsClient!.close();
   }
 
   private onChatModelChatPart = (event: CustomEvent) => {
     const model = event.detail as ChatModel;
 
-    this.trpc.newMessage.mutate(model.message);
+    this.trpc!.newMessage.mutate(model.message);
   };
 }
 
