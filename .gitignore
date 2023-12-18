@@ -12,6 +12,7 @@ node_modules/
 target/
 coverage/
 out/
+bundle/
 
 !.vscode/
 !.github/

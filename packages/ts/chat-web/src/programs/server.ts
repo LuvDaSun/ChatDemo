@@ -1,5 +1,6 @@
 import http from "http";
 import * as yargs from "yargs";
+import * as application from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -22,32 +23,38 @@ interface MainOptions {
 async function main(options: MainOptions) {
   const { port } = options;
 
-  const server = http.createServer();
-
   console.log("Starting server...");
+
+  const server = http.createServer();
+  const applicationServer = new application.Server();
 
   await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
 
+  server.addListener("request", applicationServer.requestHandler);
+
   console.log("Server started");
+  try {
+    await new Promise<void>((resolve) => {
+      const abort = () => {
+        process.removeListener("SIGINT", abort);
+        process.removeListener("SIGTERM", abort);
 
-  await new Promise<void>((resolve) => {
-    const abort = () => {
-      process.removeListener("SIGINT", abort);
-      process.removeListener("SIGTERM", abort);
+        resolve();
+      };
+      process.addListener("SIGINT", abort);
+      process.addListener("SIGTERM", abort);
+    });
+  } finally {
+    console.log("Stopping server...");
 
-      resolve();
-    };
-    process.addListener("SIGINT", abort);
-    process.addListener("SIGTERM", abort);
-  });
+    server.removeListener("request", applicationServer.requestHandler);
 
-  console.log("Stopping server...");
+    server.closeAllConnections();
 
-  server.closeAllConnections();
+    await new Promise<void>((resolve, reject) =>
+      server.close((error) => (error == null ? resolve() : reject(error))),
+    );
 
-  await new Promise<void>((resolve, reject) =>
-    server.close((error) => (error == null ? resolve() : reject(error))),
-  );
-
-  console.log("Server stopped");
+    console.log("Server stopped");
+  }
 }
