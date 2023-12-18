@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "name": "ts/chat-web",
+      "path": "./ts/chat-web"
+    }
+  ],
+  "settings": {
+    "window.title": "ChatDemo",
+    "typescript.tsdk": "../node_modules/typescript/lib",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

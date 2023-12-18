@@ -1,0 +1,56 @@
+{
+  "name": "chat-web",
+  "private": true,
+  "sideEffects": false,
+  "description": "generate interfaces and validators from a json schema",
+  "type": "module",
+  "bin": {
+    "chat-web": "bin/chat-web"
+  },
+  "main": "out/main.js",
+  "types": "out/main.d.ts",
+  "files": [
+    "bin/*",
+    "out/*",
+    "src/*"
+  ],
+  "scripts": {
+    "prepack": "npm install --no-workspaces",
+    "pretest": "tsc --build",
+    "prepare": "tsc --build",
+    "build": "tsc --build",
+    "clean": "rm -rf ./out && tsc --build --clean",
+    "test": "node --test ./out/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LuvDaSun/JsonSchema42.git"
+  },
+  "author": "LuvDaSun Software B.V.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuvDaSun/JsonSchema42/issues"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "generator"
+  ],
+  "homepage": "https://www.JsonSchema42.org",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "typescript": "^5.3.3",
+    "yaml": "^2.3.4"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.4",
+    "@types/yargs": "^17.0.32",
+    "p-defer": "^4.0.0",
+    "tslib": "^2.6.2",
+    "type-fest": "^4.6.0",
+    "typescript": "^5.3.3",
+    "yargs": "^17.7.2"
+  },
+  "bundledDependencies": [],
+  "bundleDependencies": []
+}
