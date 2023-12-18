@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { RouteState } from "../../browser.js";
+import { RouteState, routing } from "../../singletons/index.js";
 
 const componentName = "app-route-link";
 export { Component as RouteLink };
@@ -19,12 +19,8 @@ class Component extends LitElement {
   @property()
   accessor replace = false;
 
-  getHref() {
-    return window.router.stringifyRoute(this.routeKey, this.routeParameters);
-  }
-
   render() {
-    const href = this.getHref();
+    const href = routing.getHref(this.routeKey, this.routeParameters);
     return html`<a href=${href}><slot></slot></a>`;
   }
 
@@ -41,19 +37,14 @@ class Component extends LitElement {
   }
 
   private onClick = (event: Event) => {
-    const href = this.getHref();
-    if (href == null) {
-      throw new Error("invalid route");
-    }
-
-    let state = { ...this.routeState, ...window.routeState };
+    const href = routing.getHref(this.routeKey, this.routeParameters);
 
     event.preventDefault();
 
     if (this.replace) {
-      window.replaceRoute(href, state);
+      routing.replaceRoute(href, this.routeState);
     } else {
-      window.pushRoute(href, state);
+      routing.pushRoute(href, this.routeState);
     }
   };
 }

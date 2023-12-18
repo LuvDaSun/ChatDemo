@@ -8,6 +8,7 @@ export default defineConfig({
     file: "./bundle/browser.js",
     format: "iife",
     sourcemap: "inline",
+    name: "application",
   },
 
   context: "window",

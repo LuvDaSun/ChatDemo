@@ -47,6 +47,7 @@
     "yaml": "^2.3.4"
   },
   "dependencies": {
+    "@lit/context": "^1.1.0",
     "@types/node": "^20.10.4",
     "@types/yargs": "^17.0.32",
     "goodrouter": "^2.1.2",

@@ -61,7 +61,7 @@ export class Server {
   <link rel="icon" href="data:," />
   <script src="./browser.js"></script>
   <script>
-    window.router.loadFromJson(${JSON.stringify(this.router.saveToJson())})
+    application.routing.setup(window, ${JSON.stringify(this.router.saveToJson())})
   </script>
 </head>
 <body>
