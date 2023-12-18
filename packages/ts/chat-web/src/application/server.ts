@@ -48,7 +48,7 @@ export class Server {
       return;
     }
 
-    // no matches, file not foud! (404)
+    // no matches, file not found! (404)
     response.statusCode = 404;
     response.end();
   }
