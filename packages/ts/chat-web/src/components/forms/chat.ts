@@ -1,5 +1,6 @@
 import { LitElement, PropertyValueMap, css, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
 
 const componentName = "app-chat-form";
 export { Component as ChatForm, Model as ChatModel, defaultModel as defaultChatModel };
@@ -38,7 +39,7 @@ class Component extends LitElement {
       font-family: inherit;
     }
     input.error {
-      border: red;
+      outline: solid red;
     }
   `;
 
@@ -54,11 +55,13 @@ class Component extends LitElement {
   accessor formError!: FormError;
 
   render() {
-    const { formModel } = this;
+    const { formModel, formError } = this;
 
     return html`
       <form @submit=${this.onSubmitForm} @input=${this.onInputForm}>
-        <input name="message" type="text" .value=${formModel.message}  />
+        <input name="message" type="text" .value=${formModel.message} class=${classMap({
+          error: formError.message,
+        })} />
       </fieldset>
     `;
   }
@@ -100,7 +103,7 @@ class Component extends LitElement {
       this.formError[member] = false;
       const value = formModel[member].trim();
       if (value === "") {
-        this.formError[member] = true;
+        this.formError = { ...this.formError, ...{ [member]: true } };
         return;
       }
 
@@ -132,6 +135,10 @@ class Component extends LitElement {
     e.stopPropagation();
 
     const model = this.getModel();
+
+    if (model == null) {
+      return;
+    }
 
     const event = new CustomEvent("model", { detail: model });
     this.dispatchEvent(event);
