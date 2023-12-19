@@ -34,7 +34,7 @@ class Component extends LitElement {
   connectedCallback(): void {
     (async () => {
       const result = await this.client
-        .query(operations.allMessagesOperation, {} as types.AllMessagesQueryVariables)
+        .query(operations.getMessagesOperation, {} as types.AllMessagesQueryVariables)
         .toPromise();
       const data = result.data as types.AllMessagesQuery;
       this.messages = immutable.List(data.messages);

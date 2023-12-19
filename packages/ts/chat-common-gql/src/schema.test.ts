@@ -50,7 +50,7 @@ test("hello", async () => {
   {
     const result = await execute({
       schema,
-      document: operations.allMessagesOperation,
+      document: operations.getMessagesOperation,
       variableValues: {} as types.AllMessagesQueryVariables,
     });
     const data = result.data as types.AllMessagesQuery;
