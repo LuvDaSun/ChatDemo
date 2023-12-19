@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
 import { defineConfig } from "rollup";
 
 export default defineConfig({
@@ -13,5 +14,15 @@ export default defineConfig({
 
   context: "window",
 
-  plugins: [nodeResolve({ browser: true, mainFields: ["browser"] }), commonjs()],
+  plugins: [
+    nodeResolve({ browser: true, mainFields: ["browser"] }),
+    commonjs(),
+    replace({
+      values: {
+        "process.env.NODE_ENV": JSON.stringify("production"),
+        "globalThis.process.env.NODE_ENV": JSON.stringify("production"),
+      },
+      preventAssignment: true,
+    }),
+  ],
 });
