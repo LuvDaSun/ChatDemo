@@ -2,7 +2,8 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
-    "runem.lit-plugin"
+    "runem.lit-plugin",
+    "firefox-devtools.vscode-firefox-debug"
   ],
   "unwantedRecommendations": []
 }

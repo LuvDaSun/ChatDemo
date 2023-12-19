@@ -1,7 +1,7 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { execute } from "graphql";
 import test from "node:test";
-import { operations } from "./operations.js";
+import * as operations from "./operations.js";
 import { typeDefs } from "./type-defs.js";
 import * as types from "./types.js";
 
@@ -37,8 +37,7 @@ test("hello", async () => {
   {
     const result = await execute({
       schema,
-      document: operations,
-      operationName: "NewMessage",
+      document: operations.newMessageOperation,
       variableValues: {
         message: "hi!!",
       } as types.NewMessageMutationVariables,
@@ -51,8 +50,7 @@ test("hello", async () => {
   {
     const result = await execute({
       schema,
-      document: operations,
-      operationName: "AllMessages",
+      document: operations.allMessagesOperation,
       variableValues: {} as types.AllMessagesQueryVariables,
     });
     const data = result.data as types.AllMessagesQuery;

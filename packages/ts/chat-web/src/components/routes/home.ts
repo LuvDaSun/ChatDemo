@@ -15,11 +15,14 @@ class Component extends LitElement {
       <h1>Home</h1>
       <p>Welcome</p>
       <p>
+        <app-route-link routeKey="about">About</app-route-link>
+      </p>
+      <p>
         <app-route-link routeKey="local">Local</app-route-link>
         -
         <app-route-link routeKey="trpc">Trpc</app-route-link>
         -
-        <app-route-link routeKey="about">About</app-route-link>
+        <app-route-link routeKey="gql">Gql</app-route-link>
       </p>
     `;
   }

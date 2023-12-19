@@ -38,6 +38,15 @@
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}/bundle",
       "preLaunchTask": "rollup-watch"
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "name": "Firefox",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}/bundle",
+      "preLaunchTask": "rollup-watch"
     }
   ]
 }
