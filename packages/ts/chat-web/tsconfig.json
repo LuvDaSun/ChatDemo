@@ -9,5 +9,5 @@
     "lib": ["ES2023", "DOM"]
   },
   "include": ["src/**/*"],
-  "references": [{ "path": "../chat-api-trpc" }]
+  "references": [{ "path": "../chat-api-trpc" }, { "path": "../chat-common-gql" }]
 }
