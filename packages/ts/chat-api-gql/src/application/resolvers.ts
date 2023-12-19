@@ -6,10 +6,10 @@ export const resolvers = {
     messages(
       parent: unknown,
       {}: types.AllMessagesQueryVariables,
-      context: unknown,
+      context: common.application.Context,
       info: common.application.Context,
     ) {
-      return ["hi"];
+      return context.messageService.getMessages();
     },
   },
   Mutation: {
@@ -19,6 +19,7 @@ export const resolvers = {
       context: common.application.Context,
       info: unknown,
     ) {
+      context.messageService.newMessage(message);
       return true;
     },
   },
