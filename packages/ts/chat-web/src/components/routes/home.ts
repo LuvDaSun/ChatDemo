@@ -1,7 +1,6 @@
 import immutable from "immutable";
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { ChatModel } from "../index.js";
 
 const componentName = "app-home-route";
 export { Component as HomeRoute };
@@ -24,12 +23,6 @@ class Component extends LitElement {
       </p>
     `;
   }
-
-  private onChatModelChatPart = (event: CustomEvent) => {
-    const model = event.detail as ChatModel;
-
-    this.messages = this.messages.push(model.message);
-  };
 }
 
 declare global {
