@@ -1,6 +1,6 @@
 import { applyWSSHandler } from "@trpc/server/adapters/ws";
 import * as common from "chat-api-common";
-import { createServer } from "http";
+import * as http from "http";
 import { WebSocketServer } from "ws";
 import * as yargs from "yargs";
 import * as application from "../application/index.js";
@@ -31,7 +31,7 @@ async function main(options: MainOptions) {
   const context = new common.application.Context();
   const router = application.createRouter(context);
 
-  const server = createServer();
+  const server = http.createServer();
   const wss = new WebSocketServer({ server });
   const wssHandler = applyWSSHandler({ wss, router });
 

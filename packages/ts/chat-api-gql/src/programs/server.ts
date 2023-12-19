@@ -1,9 +1,6 @@
-import { applyWSSHandler } from "@gql/server/adapters/ws";
 import * as common from "chat-api-common";
-import { createServer } from "http";
-import { WebSocketServer } from "ws";
+import * as http from "http";
 import * as yargs from "yargs";
-import * as application from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -29,11 +26,8 @@ async function main(options: MainOptions) {
   console.log("Starting server...");
 
   const context = new common.application.Context();
-  const router = application.createRouter(context);
 
-  const server = createServer();
-  const wss = new WebSocketServer({ server });
-  const wssHandler = applyWSSHandler({ wss, router });
+  const server = http.createServer();
 
   await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
 
@@ -51,10 +45,6 @@ async function main(options: MainOptions) {
     });
   } finally {
     console.log("Stopping server...");
-
-    await new Promise<void>((resolve, reject) =>
-      wss.close((error) => (error == null ? resolve() : reject(error))),
-    );
 
     server.closeAllConnections();
 

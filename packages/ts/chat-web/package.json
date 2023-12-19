@@ -6,6 +6,8 @@
   "bin": {
     "chat-web": "bin/chat-web"
   },
+  "main": "out/main.js",
+  "types": "out/main.d.ts",
   "files": [
     "bin/*",
     "out/*",
