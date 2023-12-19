@@ -8,6 +8,10 @@
       "name": "ts/chat-api-trpc",
       "path": "./ts/chat-api-trpc"
     }
+    {
+      "name": "ts/chat-api-common",
+      "path": "./ts/chat-api-common"
+    }
   ],
   "settings": {
     "window.title": "ChatDemo",

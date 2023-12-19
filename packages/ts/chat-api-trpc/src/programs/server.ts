@@ -1,9 +1,9 @@
 import { applyWSSHandler } from "@trpc/server/adapters/ws";
+import * as common from "chat-api-common";
 import { createServer } from "http";
 import { WebSocketServer } from "ws";
 import * as yargs from "yargs";
 import * as application from "../application/index.js";
-import { Context } from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -28,7 +28,7 @@ async function main(options: MainOptions) {
 
   console.log("Starting server...");
 
-  const context = new Context();
+  const context = new common.application.Context();
   const router = application.createRouter(context);
 
   const server = createServer();

@@ -1,9 +1,9 @@
 import { initTRPC } from "@trpc/server";
+import * as common from "chat-api-common";
 import { z } from "zod";
 import { toObservable } from "../utils/index.js";
-import { Context } from "./context.js";
 
-export function createRouter(context: Context) {
+export function createRouter(context: common.application.Context) {
   const trpc = initTRPC.create();
 
   return trpc.router({

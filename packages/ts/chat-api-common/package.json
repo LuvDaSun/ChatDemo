@@ -1,15 +1,11 @@
 {
-  "name": "chat-api-trpc",
+  "name": "chat-api-common",
   "private": true,
-  "description": "chat demo api trpc",
+  "description": "chat demo api common",
   "type": "module",
-  "bin": {
-    "chat-api-trpc": "bin/chat-api-trpc"
-  },
   "main": "out/main.js",
   "types": "out/main.d.ts",
   "files": [
-    "bin/*",
     "out/*",
     "src/*"
   ],
@@ -37,18 +33,12 @@
   },
   "dependencies": {
     "@lit/context": "^1.1.0",
-    "@trpc/client": "^10.44.1",
-    "@trpc/server": "^10.44.1",
-    "@types/cors": "^2.8.17",
     "@types/node": "^20.10.4",
-    "@types/ws": "^8.5.10",
     "@types/yargs": "^17.0.32",
-    "cors": "^2.8.5",
+    "buffered-iterable": "^1.0.3",
+    "iterable-fanout": "^2.0.2",
     "tslib": "^2.6.2",
     "type-fest": "^4.6.0",
-    "ws": "^8.15.1",
-    "yargs": "^17.7.2",
-    "zod": "^3.22.4",
-    "chat-api-common": "file:../chat-api-common"
+    "yargs": "^17.7.2"
   }
 }
