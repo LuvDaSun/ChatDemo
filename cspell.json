@@ -1,0 +1,6 @@
+{
+  "version": "0.2",
+  "words": ["goodrouter", "fanout"],
+  "useGitignore": true,
+  "files": ["packages/rs/*/src/**", "packages/ts/*/src/**", "packages/oas/*/src/**"]
+}

@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "label": "tsc-watch",
+      "script": "tsc-watch",
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true,
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "label": "rollup-watch",
+      "script": "rollup-watch",
+      "problemMatcher": {
+        "background": {
+          "activeOnStart": false,
+          "beginsPattern": ".*",
+          "endsPattern": "waiting for changes\\.\\.\\.$"
+        },
+        "pattern": [
+          {
+            "regexp": "^\\(!\\)\\s+(.*?)$",
+            "file": 0,
+            "location": 0,
+            "message": 1
+          }
+        ]
+      },
+      "isBackground": true,
+      "group": "build",
+      "dependsOn": ["tsc-watch"]
+    }
+  ]
+}
