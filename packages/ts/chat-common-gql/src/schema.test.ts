@@ -1,3 +1,4 @@
+import { makeExecutableSchema } from "@graphql-tools/schema";
 import { execute } from "graphql";
 import test from "node:test";
 import {
@@ -6,19 +7,37 @@ import {
   NewMessageMutation,
   NewMessageMutationVariables,
 } from "./graphql.js";
-import { ALL_MESSAGES, NEW_MESSAGE } from "./operations.js";
-import { schema } from "./schema.js";
+import { OPERATIONS } from "./operations.js";
+import { SCHEMA } from "./schema.js";
 
 test("hello", async () => {
+  const resolvers = {
+    Query: {
+      messages() {
+        return ["hi"];
+      },
+    },
+    Mutation: {
+      newMessage(message: string) {
+        return true;
+      },
+    },
+  };
+
+  const schema = makeExecutableSchema({
+    resolvers: [resolvers],
+    typeDefs: [SCHEMA],
+  });
+
   {
     const result = await execute({
       schema,
-      document: NEW_MESSAGE,
+      document: OPERATIONS,
+      operationName: "NewMessage",
       variableValues: {
         message: "hi!!",
       } as NewMessageMutationVariables,
     });
-
     const data = result.data as NewMessageMutation;
 
     console.log(data);
@@ -27,10 +46,10 @@ test("hello", async () => {
   {
     const result = await execute({
       schema,
-      document: ALL_MESSAGES,
+      document: OPERATIONS,
+      operationName: "AllMessages",
       variableValues: {} as AllMessagesQueryVariables,
     });
-
     const data = result.data as AllMessagesQuery;
 
     console.log(data);
