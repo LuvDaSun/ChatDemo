@@ -2,7 +2,8 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
-    "orsenkucher.vscode-graphql"
+    "orsenkucher.vscode-graphql",
+    "graphql.vscode-graphql"
   ],
   "unwantedRecommendations": []
 }

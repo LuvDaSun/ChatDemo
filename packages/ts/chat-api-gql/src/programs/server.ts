@@ -1,6 +1,7 @@
 import * as common from "chat-api-common";
-import * as http from "http";
+import http from "http";
 import * as yargs from "yargs";
+import * as application from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -10,7 +11,7 @@ export function registerServerProgram(argv: yargs.Argv) {
       yargs.option("port", {
         description: "Port to start the server on",
         type: "number",
-        default: 8080,
+        default: 4000,
       }),
     (argv) => main(argv as MainOptions),
   );
@@ -28,8 +29,13 @@ async function main(options: MainOptions) {
   const context = new common.application.Context();
 
   const server = http.createServer();
+  const applicationServer = new application.Server(context);
+
+  await applicationServer.setup();
 
   await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
+
+  server.addListener("request", applicationServer.requestHandler);
 
   console.log("Server started");
   try {
@@ -45,6 +51,10 @@ async function main(options: MainOptions) {
     });
   } finally {
     console.log("Stopping server...");
+
+    server.removeListener("request", applicationServer.requestHandler);
+
+    await applicationServer.teardown();
 
     server.closeAllConnections();
 

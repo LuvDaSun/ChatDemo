@@ -13,7 +13,7 @@ export function registerServerProgram(argv: yargs.Argv) {
       yargs.option("port", {
         description: "Port to start the server on",
         type: "number",
-        default: 8080,
+        default: 3000,
       }),
     (argv) => main(argv as MainOptions),
   );
