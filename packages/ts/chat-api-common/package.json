@@ -32,13 +32,9 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@lit/context": "^1.1.0",
     "@types/node": "^20.10.4",
-    "@types/yargs": "^17.0.32",
     "buffered-iterable": "^1.0.3",
     "iterable-fanout": "^2.0.2",
-    "tslib": "^2.6.2",
-    "type-fest": "^4.6.0",
-    "yargs": "^17.7.2"
+    "tslib": "^2.6.2"
   }
 }
