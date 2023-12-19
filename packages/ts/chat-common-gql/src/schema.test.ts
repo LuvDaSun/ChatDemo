@@ -8,12 +8,22 @@ import * as types from "./types.js";
 test("hello", async () => {
   const resolvers = {
     Query: {
-      messages() {
+      messages(
+        parent: unknown,
+        {}: types.AllMessagesQueryVariables,
+        context: unknown,
+        info: unknown,
+      ) {
         return ["hi"];
       },
     },
     Mutation: {
-      newMessage(message: string) {
+      newMessage(
+        parent: unknown,
+        { message }: types.NewMessageMutationVariables,
+        context: unknown,
+        info: unknown,
+      ) {
         return true;
       },
     },
