@@ -3,7 +3,7 @@ schema:
 documents:
   - src/*.ts
 generates:
-  src/graphql.ts:
+  src/types.ts:
     plugins:
       - typescript
       - typescript-operations

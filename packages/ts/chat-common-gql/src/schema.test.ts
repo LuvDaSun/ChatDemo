@@ -6,7 +6,7 @@ import {
   AllMessagesQueryVariables,
   NewMessageMutation,
   NewMessageMutationVariables,
-} from "./graphql.js";
+} from "./types.js";
 import { OPERATIONS } from "./operations.js";
 import { SCHEMA } from "./schema.js";
 
