@@ -1,14 +1,9 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { execute } from "graphql";
 import test from "node:test";
-import {
-  AllMessagesQuery,
-  AllMessagesQueryVariables,
-  NewMessageMutation,
-  NewMessageMutationVariables,
-} from "./types.js";
 import { OPERATIONS } from "./operations.js";
 import { SCHEMA } from "./schema.js";
+import * as types from "./types.js";
 
 test("hello", async () => {
   const resolvers = {
@@ -36,9 +31,9 @@ test("hello", async () => {
       operationName: "NewMessage",
       variableValues: {
         message: "hi!!",
-      } as NewMessageMutationVariables,
+      } as types.NewMessageMutationVariables,
     });
-    const data = result.data as NewMessageMutation;
+    const data = result.data as types.NewMessageMutation;
 
     console.log(data);
   }
@@ -48,9 +43,9 @@ test("hello", async () => {
       schema,
       document: OPERATIONS,
       operationName: "AllMessages",
-      variableValues: {} as AllMessagesQueryVariables,
+      variableValues: {} as types.AllMessagesQueryVariables,
     });
-    const data = result.data as AllMessagesQuery;
+    const data = result.data as types.AllMessagesQuery;
 
     console.log(data);
   }
