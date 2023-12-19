@@ -1,30 +1,38 @@
 import { execute } from "graphql";
 import test from "node:test";
+import {
+  AllMessagesQuery,
+  AllMessagesQueryVariables,
+  NewMessageMutation,
+  NewMessageMutationVariables,
+} from "./graphql.js";
 import { ALL_MESSAGES, NEW_MESSAGE } from "./operations.js";
 import { schema } from "./schema.js";
 
 test("hello", async () => {
-  const newMessage = NEW_MESSAGE;
-  const allMessages = ALL_MESSAGES;
-
   {
     const result = await execute({
       schema,
-      document: newMessage,
+      document: NEW_MESSAGE,
       variableValues: {
         message: "hi!!",
-      },
+      } as NewMessageMutationVariables,
     });
 
-    console.log(result);
+    const data = result.data as NewMessageMutation;
+
+    console.log(data);
   }
 
   {
     const result = await execute({
       schema,
-      document: allMessages,
+      document: ALL_MESSAGES,
+      variableValues: {} as AllMessagesQueryVariables,
     });
 
-    console.log(result);
+    const data = result.data as AllMessagesQuery;
+
+    console.log(data);
   }
 });

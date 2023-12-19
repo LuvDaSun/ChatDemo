@@ -1,14 +1,14 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { parse } from "graphql";
 
-const typeDefinitions = /* GraphQL */ `
+const typeDefinitions = parse(/* GraphQL */ `
   type Query {
     messages: [String!]!
   }
-
   type Mutation {
     newMessage(message: String!): Boolean!
   }
-`;
+`);
 
 const resolvers = {
   Query: {

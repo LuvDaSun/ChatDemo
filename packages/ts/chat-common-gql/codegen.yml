@@ -1,5 +1,5 @@
 schema:
-  - src/*.graphql
+  - src/*.ts
 documents:
   - src/*.ts
 generates:
