@@ -9,5 +9,5 @@
     "lib": ["ES2023", "DOM"]
   },
   "include": ["src/**/*"],
-  "references": []
+  "references": [{ "path": "../chat-api-common" }, { "path": "../chat-common-gql" }]
 }
