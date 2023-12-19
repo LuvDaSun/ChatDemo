@@ -1,6 +1,7 @@
 schema:
-  - src/operations.graphql
-  - src/schema.graphql
+  - src/*.graphql
+documents:
+  - src/*.ts
 generates:
   src/graphql.ts:
     plugins:

@@ -3,5 +3,5 @@ type Query {
 }
 
 type Mutation {
-  newMessage(message: String!): Boolean
+  newMessage(message: String!): Boolean!
 }

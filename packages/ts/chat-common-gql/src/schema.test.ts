@@ -1,24 +1,16 @@
-import { execute, parse } from "graphql";
+import { execute } from "graphql";
 import test from "node:test";
+import { ALL_MESSAGES, NEW_MESSAGE } from "./operations.js";
 import { schema } from "./schema.js";
 
 test("hello", async () => {
-  const mutation = parse(/* GraphQL */ `
-    mutation ($message: String!) {
-      newMessage(message: $message)
-    }
-  `);
-
-  const query = parse(/* GraphQL */ `
-    query {
-      messages
-    }
-  `);
+  const newMessage = NEW_MESSAGE;
+  const allMessages = ALL_MESSAGES;
 
   {
     const result = await execute({
       schema,
-      document: mutation,
+      document: newMessage,
       variableValues: {
         message: "hi!!",
       },
@@ -30,7 +22,7 @@ test("hello", async () => {
   {
     const result = await execute({
       schema,
-      document: query,
+      document: allMessages,
     });
 
     console.log(result);

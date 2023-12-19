@@ -16,7 +16,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  newMessage?: Maybe<Scalars['Boolean']['output']>;
+  newMessage: Scalars['Boolean']['output'];
 };
 
 
@@ -28,3 +28,15 @@ export type Query = {
   __typename?: 'Query';
   messages: Array<Scalars['String']['output']>;
 };
+
+export type AllMessagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllMessagesQuery = { __typename?: 'Query', messages: Array<string> };
+
+export type NewMessageMutationVariables = Exact<{
+  message: Scalars['String']['input'];
+}>;
+
+
+export type NewMessageMutation = { __typename?: 'Mutation', newMessage: boolean };
