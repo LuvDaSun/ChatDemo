@@ -1,6 +1,6 @@
 import { parse } from "graphql";
 
-export const OPERATIONS = parse(/* GraphQL */ `
+export const operations = parse(/* GraphQL */ `
   query AllMessages {
     messages
   }

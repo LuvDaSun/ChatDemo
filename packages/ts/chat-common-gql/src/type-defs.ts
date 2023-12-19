@@ -1,6 +1,6 @@
 import { parse } from "graphql";
 
-export const SCHEMA = parse(/* GraphQL */ `
+export const typeDefs = parse(/* GraphQL */ `
   type Query {
     messages: [String!]!
   }

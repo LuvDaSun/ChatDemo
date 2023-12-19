@@ -1,36 +1,14 @@
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import * as common from "chat-api-common";
-import { SCHEMA, types } from "chat-common-gql";
+import { typeDefs } from "chat-common-gql";
 import express from "express";
 import http from "http";
-
-const resolvers = {
-  Query: {
-    messages(
-      parent: unknown,
-      {}: types.AllMessagesQueryVariables,
-      context: unknown,
-      info: common.application.Context,
-    ) {
-      return ["hi"];
-    },
-  },
-  Mutation: {
-    newMessage(
-      parent: unknown,
-      { message }: types.NewMessageMutationVariables,
-      context: common.application.Context,
-      info: unknown,
-    ) {
-      return true;
-    },
-  },
-};
+import { resolvers } from "./resolvers.js";
 
 export class Server {
   private readonly apolloServer = new ApolloServer<common.application.Context>({
-    typeDefs: SCHEMA,
+    typeDefs,
     resolvers,
   });
   private readonly express = express();
