@@ -1,14 +1,12 @@
+import * as urql from "@urql/core";
 import { operations, types } from "chat-common-gql";
-import { request } from "graphql-request";
 import immutable from "immutable";
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { ChatModel } from "../index.js";
+import { ChatModel } from "../forms/index.js";
 
 const componentName = "app-gql-route";
 export { Component as GqlRoute };
-
-const gqlEndpoint = "http://localhost:4000";
 
 @customElement(componentName)
 class Component extends LitElement {
@@ -28,15 +26,18 @@ class Component extends LitElement {
     `;
   }
 
+  private client: urql.Client = new urql.Client({
+    url: "http://localhost:4000",
+    exchanges: [urql.fetchExchange],
+  });
+
   connectedCallback(): void {
     (async () => {
-      const result = (await request(
-        gqlEndpoint,
-        operations.allMessagesOperation,
-        {} as types.AllMessagesQueryVariables,
-      )) as types.AllMessagesQuery;
-
-      this.messages = immutable.List(result.messages);
+      const result = await this.client
+        .query(operations.allMessagesOperation, {} as types.AllMessagesQueryVariables)
+        .toPromise();
+      const data = result.data as types.AllMessagesQuery;
+      this.messages = immutable.List(data.messages);
     })();
 
     super.connectedCallback();
@@ -50,9 +51,12 @@ class Component extends LitElement {
     const model = event.detail as ChatModel;
 
     (async () => {
-      const result = (await request(gqlEndpoint, operations.newMessageOperation, {
-        message: model.message,
-      } as types.NewMessageMutationVariables)) as types.NewMessageMutation;
+      const result = await this.client
+        .mutation(operations.newMessageOperation, {
+          message: model.message,
+        } as types.NewMessageMutationVariables)
+        .toPromise();
+      const data = result.data as types.NewMessageMutation;
     })();
   };
 }

@@ -3,7 +3,7 @@ import { type Router } from "chat-api-trpc";
 import immutable from "immutable";
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { ChatModel } from "../index.js";
+import { ChatModel } from "../forms/index.js";
 
 const componentName = "app-trpc-route";
 export { Component as TrpcRoute };
