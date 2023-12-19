@@ -8,7 +8,7 @@
     "src/*"
   ],
   "scripts": {
-    "codegen": "graphql-codegen --config codegen.ts"
+    "build": "graphql-codegen --config codegen.ts"
   },
   "repository": {
     "type": "git",
