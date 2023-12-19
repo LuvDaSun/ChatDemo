@@ -1,0 +1,7 @@
+query {
+  messages
+}
+
+mutation ($message: String!) {
+  newMessage(message: $message)
+}

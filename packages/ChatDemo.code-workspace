@@ -13,8 +13,8 @@
       "path": "./ts/chat-api-common"
     },
     {
-      "name": "gql/chat-gql",
-      "path": "./gql/chat-gql"
+      "name": "ts/chat-common-gql",
+      "path": "./ts/chat-common-gql"
     }
   ],
   "settings": {
