@@ -1,0 +1,28 @@
+{
+  "name": "chat-gql",
+  "private": true,
+  "description": "chat demo gql",
+  "type": "module",
+  "files": [
+    "out/*",
+    "src/*"
+  ],
+  "scripts": {
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LuvDaSun/ChatDemo.git"
+  },
+  "author": "LuvDaSun Software B.V.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuvDaSun/ChatDemo/issues"
+  },
+  "homepage": "https://www.LuvDaSun.software",
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.0",
+    "typescript": "^5.3.3",
+    "@graphql-codegen/client-preset": "4.1.0"
+  }
+}

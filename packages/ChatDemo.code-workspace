@@ -11,6 +11,10 @@
     {
       "name": "ts/chat-api-common",
       "path": "./ts/chat-api-common"
+    },
+    {
+      "name": "gql/chat-gql",
+      "path": "./gql/chat-gql"
     }
   ],
   "settings": {
