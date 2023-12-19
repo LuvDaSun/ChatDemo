@@ -1,5 +1,5 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import { execute } from "graphql";
+import { execute, subscribe } from "graphql";
 import test from "node:test";
 import * as operations from "./operations.js";
 import { typeDefs } from "./type-defs.js";
@@ -10,11 +10,36 @@ test("hello", async () => {
     Query: {
       messages(
         parent: unknown,
-        {}: types.AllMessagesQueryVariables,
+        {}: types.GetMessagesQueryVariables,
         context: unknown,
         info: unknown,
       ) {
         return ["hi"];
+      },
+    },
+    Subscription: {
+      messageEvents: {
+        async *subscribe(
+          parent: unknown,
+          {}: types.SubscribeMessagesSubscriptionVariables,
+          context: unknown,
+          info: unknown,
+        ) {
+          yield {
+            messageEvents: {
+              __typename: "MessageSnapshot",
+              type: "message-snapshot",
+              messages: ["hi"],
+            } as types.MessageSnapshot,
+          };
+          yield {
+            messageEvents: {
+              __typename: "MessageNew",
+              type: "message-new",
+              message: "ho",
+            } as types.MessageNew,
+          };
+        },
       },
     },
     Mutation: {
@@ -51,10 +76,26 @@ test("hello", async () => {
     const result = await execute({
       schema,
       document: operations.getMessagesOperation,
-      variableValues: {} as types.AllMessagesQueryVariables,
+      variableValues: {} as types.GetMessagesQueryVariables,
     });
-    const data = result.data as types.AllMessagesQuery;
+    const data = result.data as types.GetMessagesQuery;
 
     console.log(data);
+  }
+
+  {
+    const result = await subscribe({
+      schema,
+      document: operations.subscribeMessagesOperation,
+      variableValues: {} as types.SubscribeMessagesSubscriptionVariables,
+    });
+
+    if (Symbol.asyncIterator in result) {
+      for await (const event of result) {
+        const data = event.data as types.SubscribeMessagesSubscription;
+
+        console.log(data);
+      }
+    }
   }
 });

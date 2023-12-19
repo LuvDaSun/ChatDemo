@@ -14,6 +14,18 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type MessageEvent = MessageNew | MessageSnapshot;
+
+export type MessageNew = {
+  __typename?: 'MessageNew';
+  message: Scalars['String']['output'];
+};
+
+export type MessageSnapshot = {
+  __typename?: 'MessageSnapshot';
+  messages: Array<Scalars['String']['output']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   newMessage: Scalars['Boolean']['output'];
@@ -29,10 +41,20 @@ export type Query = {
   messages: Array<Scalars['String']['output']>;
 };
 
-export type AllMessagesQueryVariables = Exact<{ [key: string]: never; }>;
+export type Subscription = {
+  __typename?: 'Subscription';
+  messageEvents: MessageEvent;
+};
+
+export type GetMessagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllMessagesQuery = { __typename?: 'Query', messages: Array<string> };
+export type GetMessagesQuery = { __typename?: 'Query', messages: Array<string> };
+
+export type SubscribeMessagesSubscriptionVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SubscribeMessagesSubscription = { __typename?: 'Subscription', messageEvents: { __typename?: 'MessageNew', message: string } | { __typename?: 'MessageSnapshot', messages: Array<string> } };
 
 export type NewMessageMutationVariables = Exact<{
   message: Scalars['String']['input'];

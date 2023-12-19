@@ -6,6 +6,21 @@ export const getMessagesOperation = parse(/* GraphQL */ `
   }
 `);
 
+export const subscribeMessagesOperation = parse(/* GraphQL */ `
+  subscription SubscribeMessages {
+    messageEvents {
+      ... on MessageSnapshot {
+        type
+        messages
+      }
+      ... on MessageNew {
+        type
+        message
+      }
+    }
+  }
+`);
+
 export const newMessageOperation = parse(/* GraphQL */ `
   mutation NewMessage($message: String!) {
     newMessage(message: $message)
