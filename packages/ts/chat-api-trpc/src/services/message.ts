@@ -1,7 +1,7 @@
 import { createBufferedIterable } from "buffered-iterable";
 import { createIterableFanout } from "iterable-fanout";
 
-export interface State {
+export interface MessageState {
   messages: string[];
 }
 
@@ -16,9 +16,9 @@ export type MessageEvent =
     };
 
 export class MessageService {
-  private state: State = { messages: [] };
-  private buffer = createBufferedIterable<string>();
-  private fanout = createIterableFanout(this.buffer);
+  private state: MessageState = { messages: [] };
+  private buffer = createBufferedIterable<MessageEvent>();
+  private fanout = createIterableFanout(this.applyReducer(this.buffer));
 
   async *subscribeMessages(signal: AbortSignal): AsyncIterable<MessageEvent> {
     yield {
@@ -26,16 +26,36 @@ export class MessageService {
       messages: this.state.messages,
     };
 
-    for await (const message of this.fanout.fork(signal)) {
-      yield {
-        type: "message-add",
-        message,
-      };
-    }
+    yield* this.fanout.fork(signal);
   }
 
   newMessage(message: string) {
-    this.state.messages.push(message);
-    this.buffer.push(message);
+    this.buffer.push({
+      type: "message-add",
+      message,
+    });
+  }
+
+  private async *applyReducer(iterable: AsyncIterable<MessageEvent>) {
+    for await (const event of iterable) {
+      this.state = reduce(this.state, event);
+      yield event;
+    }
+  }
+}
+
+function reduce(state: MessageState, event: MessageEvent): MessageState {
+  switch (event.type) {
+    case "message-snapshot": {
+      return {
+        messages: event.messages,
+      };
+    }
+
+    case "message-add": {
+      return {
+        messages: [...state.messages, event.message],
+      };
+    }
   }
 }
