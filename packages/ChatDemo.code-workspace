@@ -13,6 +13,10 @@
       "path": "./ts/chat-api-gql"
     },
     {
+      "name": "ts/chat-api-grpc",
+      "path": "./ts/chat-api-grpc"
+    },
+    {
       "name": "ts/chat-api-common",
       "path": "./ts/chat-api-common"
     },
@@ -45,6 +49,10 @@
           },
           {
             "folder": "ts/chat-api-gql",
+            "name": "server"
+          },
+          {
+            "folder": "ts/chat-api-grpc",
             "name": "server"
           }
         ]

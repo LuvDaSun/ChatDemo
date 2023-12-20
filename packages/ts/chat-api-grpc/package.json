@@ -1,0 +1,47 @@
+{
+  "name": "chat-api-grpc",
+  "private": true,
+  "description": "chat demo api grpc",
+  "type": "module",
+  "bin": {
+    "chat-api-grpc": "bin/chat-api-grpc"
+  },
+  "main": "out/main.js",
+  "types": "out/main.d.ts",
+  "files": [
+    "bin/*",
+    "out/*",
+    "src/*"
+  ],
+  "scripts": {
+    "prepack": "npm install --no-workspaces",
+    "pretest": "tsc --build",
+    "prepare": "tsc --build",
+    "build": "tsc --build",
+    "clean": "rm -rf ./out && tsc --build --clean",
+    "test": "node --test ./out/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LuvDaSun/ChatDemo.git"
+  },
+  "author": "LuvDaSun Software B.V.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuvDaSun/ChatDemo/issues"
+  },
+  "homepage": "https://www.LuvDaSun.software",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.4",
+    "@types/yargs": "^17.0.32",
+    "chat-api-common": "file:../chat-api-common",
+    "chat-common-grpc": "file:../chat-common-grpc",
+    "tslib": "^2.6.2",
+    "type-fest": "^4.6.0",
+    "yargs": "^17.7.2"
+  }
+}
