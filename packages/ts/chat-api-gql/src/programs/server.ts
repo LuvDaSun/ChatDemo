@@ -31,8 +31,6 @@ async function main(options: MainOptions) {
   const server = http.createServer();
   const applicationServer = new application.Server(context);
 
-  await applicationServer.setup();
-
   await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
 
   server.addListener("request", applicationServer.requestHandler);
@@ -53,8 +51,6 @@ async function main(options: MainOptions) {
     console.log("Stopping server...");
 
     server.removeListener("request", applicationServer.requestHandler);
-
-    await applicationServer.teardown();
 
     server.closeAllConnections();
 

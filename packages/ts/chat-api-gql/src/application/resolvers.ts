@@ -20,8 +20,8 @@ export const resolvers = {
         context: common.application.Context,
         info: unknown,
       ) {
-        const conrtoller = new AbortController();
-        for await (const event of context.messageService.subscribeMessages(conrtoller.signal)) {
+        const controller = new AbortController();
+        for await (const event of context.messageService.subscribeMessages(controller.signal)) {
           switch (event.type) {
             case "message-snapshot":
               yield {

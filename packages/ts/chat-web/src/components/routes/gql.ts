@@ -27,7 +27,7 @@ class Component extends LitElement {
   }
 
   private client: urql.Client = new urql.Client({
-    url: "http://localhost:4000",
+    url: "http://localhost:4000/graphql",
     fetchSubscriptions: true,
     exchanges: [urql.fetchExchange],
   });
@@ -42,7 +42,18 @@ class Component extends LitElement {
           {} as types.SubscribeMessagesSubscriptionVariables,
         )
         .subscribe((result) => {
-          const date = result.data as types.SubscribeMessagesSubscription;
+          const data = result.data as types.SubscribeMessagesSubscription;
+          switch (data.messageEvents.__typename) {
+            case "MessageSnapshot": {
+              this.messages = immutable.List(data.messageEvents.messages);
+              break;
+            }
+
+            case "MessageNew": {
+              this.messages = this.messages.push(data.messageEvents.message);
+              break;
+            }
+          }
         });
 
       this.unsubscribe = subscription.unsubscribe;
