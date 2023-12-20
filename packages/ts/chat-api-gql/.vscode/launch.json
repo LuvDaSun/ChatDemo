@@ -17,7 +17,7 @@
       "request": "launch",
       "name": "server",
       "program": "${workspaceFolder}/src/program.ts",
-      "args": ["server", "--port", "3000"],
+      "args": ["server", "--port", "4000"],
       "cwd": "${workspaceFolder}",
       "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/out/**/*.js"],

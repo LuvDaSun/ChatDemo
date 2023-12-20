@@ -9,8 +9,16 @@
       "path": "./ts/chat-api-trpc"
     },
     {
+      "name": "ts/chat-api-gql",
+      "path": "./ts/chat-api-gql"
+    },
+    {
       "name": "ts/chat-api-common",
       "path": "./ts/chat-api-common"
+    },
+    {
+      "name": "ts/chat-common-gql",
+      "path": "./ts/chat-common-gql"
     }
   ],
   "settings": {

@@ -1,19 +1,17 @@
-import { applyWSSHandler } from "@trpc/server/adapters/ws";
 import * as common from "chat-api-common";
-import * as http from "http";
-import { WebSocketServer } from "ws";
+import http from "http";
 import * as yargs from "yargs";
 import * as application from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
     "server",
-    "Start chat-api-trpc server",
+    "Start chat-api-gql server",
     (yargs) =>
       yargs.option("port", {
         description: "Port to start the server on",
         type: "number",
-        default: 3000,
+        default: 4000,
       }),
     (argv) => main(argv as MainOptions),
   );
@@ -29,13 +27,13 @@ async function main(options: MainOptions) {
   console.log("Starting server...");
 
   const context = new common.application.Context();
-  const router = application.createRouter(context);
 
   const server = http.createServer();
-  const wss = new WebSocketServer({ server });
-  const wssHandler = applyWSSHandler({ wss, router });
+  const applicationServer = new application.Server(context);
 
   await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
+
+  server.addListener("request", applicationServer.requestHandler);
 
   console.log("Server started");
   try {
@@ -52,9 +50,7 @@ async function main(options: MainOptions) {
   } finally {
     console.log("Stopping server...");
 
-    await new Promise<void>((resolve, reject) =>
-      wss.close((error) => (error == null ? resolve() : reject(error))),
-    );
+    server.removeListener("request", applicationServer.requestHandler);
 
     server.closeAllConnections();
 

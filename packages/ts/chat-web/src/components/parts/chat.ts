@@ -1,6 +1,6 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ChatModel, defaultChatModel } from "../index.js";
+import { ChatModel, defaultChatModel } from "../forms/index.js";
 
 const componentName = "app-chat-part";
 export { Component as ChatPart };

@@ -19,8 +19,8 @@
       "problemMatcher": {
         "background": {
           "activeOnStart": false,
-          "beginsPattern": ".*",
-          "endsPattern": "waiting for changes\\.\\.\\.$"
+          "beginsPattern": "^bundles\\s+.*",
+          "endsPattern": "waiting\\s+for\\s+changes\\.\\.\\.$"
         },
         "pattern": [
           {

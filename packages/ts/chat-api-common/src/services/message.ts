@@ -29,6 +29,10 @@ export class MessageService {
     yield* this.fanout.fork(signal);
   }
 
+  getMessages(): string[] {
+    return this.state.messages;
+  }
+
   newMessage(message: string) {
     this.buffer.push({
       type: "message-add",

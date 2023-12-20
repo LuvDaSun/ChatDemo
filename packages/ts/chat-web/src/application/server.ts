@@ -33,7 +33,7 @@ export class Server {
     if (fileStat.isFile()) {
       switch (path.extname(filePath)) {
         case ".js": {
-          response.setHeader("content-type", "application/json");
+          response.setHeader("content-type", "application/javascript");
           break;
         }
         default: {

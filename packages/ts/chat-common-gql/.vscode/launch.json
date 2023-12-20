@@ -11,17 +11,6 @@
       "sourceMaps": true,
       "outFiles": ["${workspaceFolder}/out/**/*.js"],
       "preLaunchTask": "build"
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "server",
-      "program": "${workspaceFolder}/src/program.ts",
-      "args": ["server", "--port", "3000"],
-      "cwd": "${workspaceFolder}",
-      "sourceMaps": true,
-      "outFiles": ["${workspaceFolder}/out/**/*.js"],
-      "preLaunchTask": "build"
     }
   ]
 }

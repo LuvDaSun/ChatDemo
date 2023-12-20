@@ -2,8 +2,8 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "streetsidesoftware.code-spell-checker",
-    "runem.lit-plugin",
-    "firefox-devtools.vscode-firefox-debug"
+    "orsenkucher.vscode-graphql",
+    "graphql.vscode-graphql"
   ],
   "unwantedRecommendations": []
 }
