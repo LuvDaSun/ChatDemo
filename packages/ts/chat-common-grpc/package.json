@@ -1,0 +1,39 @@
+{
+  "name": "chat-common-grpc",
+  "private": true,
+  "description": "chat demo api common",
+  "type": "module",
+  "main": "out/main.js",
+  "types": "out/main.d.ts",
+  "files": [
+    "out/*",
+    "src/*"
+  ],
+  "scripts": {
+    "prepack": "npm install --no-workspaces",
+    "pretest": "tsc --build",
+    "prepare": "tsc --build",
+    "build": "tsc --build",
+    "clean": "rm -rf ./out && tsc --build --clean",
+    "test": "node --test ./out/**/*.test.js",
+    "codegen": "graphql-codegen"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LuvDaSun/ChatDemo.git"
+  },
+  "author": "LuvDaSun Software B.V.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuvDaSun/ChatDemo/issues"
+  },
+  "homepage": "https://www.LuvDaSun.software",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.4",
+    "tslib": "^2.6.2"
+  }
+}

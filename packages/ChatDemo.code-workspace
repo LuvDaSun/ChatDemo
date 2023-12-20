@@ -19,6 +19,10 @@
     {
       "name": "ts/chat-common-gql",
       "path": "./ts/chat-common-gql"
+    },
+    {
+      "name": "ts/chat-common-grpc",
+      "path": "./ts/chat-common-grpc"
     }
   ],
   "settings": {
