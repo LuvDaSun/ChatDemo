@@ -7,6 +7,7 @@ import type {
   MessageEvent as _MessageEvent,
   MessageEvent__Output as _MessageEvent__Output,
 } from "./MessageEvent.js";
+import type { Messages as _Messages, Messages__Output as _Messages__Output } from "./Messages.js";
 import type { Nothing as _Nothing, Nothing__Output as _Nothing__Output } from "./Nothing.js";
 
 export interface ChatDemoClient extends grpc.Client {
@@ -14,41 +15,41 @@ export interface ChatDemoClient extends grpc.Client {
     argument: _Nothing,
     metadata: grpc.Metadata,
     options: grpc.CallOptions,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   GetMessages(
     argument: _Nothing,
     metadata: grpc.Metadata,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   GetMessages(
     argument: _Nothing,
     options: grpc.CallOptions,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   GetMessages(
     argument: _Nothing,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   getMessages(
     argument: _Nothing,
     metadata: grpc.Metadata,
     options: grpc.CallOptions,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   getMessages(
     argument: _Nothing,
     metadata: grpc.Metadata,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   getMessages(
     argument: _Nothing,
     options: grpc.CallOptions,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
   getMessages(
     argument: _Nothing,
-    callback: grpc.requestCallback<_Message__Output>,
+    callback: grpc.requestCallback<_Messages__Output>,
   ): grpc.ClientUnaryCall;
 
   NewMessage(
@@ -113,7 +114,7 @@ export interface ChatDemoClient extends grpc.Client {
 }
 
 export interface ChatDemoHandlers extends grpc.UntypedServiceImplementation {
-  GetMessages: grpc.handleUnaryCall<_Nothing__Output, _Message>;
+  GetMessages: grpc.handleUnaryCall<_Nothing__Output, _Messages>;
 
   NewMessage: grpc.handleUnaryCall<_Message__Output, _Nothing>;
 
@@ -121,7 +122,7 @@ export interface ChatDemoHandlers extends grpc.UntypedServiceImplementation {
 }
 
 export interface ChatDemoDefinition extends grpc.ServiceDefinition {
-  GetMessages: MethodDefinition<_Nothing, _Message, _Nothing__Output, _Message__Output>;
+  GetMessages: MethodDefinition<_Nothing, _Messages, _Nothing__Output, _Messages__Output>;
   NewMessage: MethodDefinition<_Message, _Nothing, _Message__Output, _Nothing__Output>;
   SubscribeMessageEvents: MethodDefinition<
     _Nothing,

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service ChatDemo {
-  rpc GetMessages (Nothing) returns (Message);
+  rpc GetMessages (Nothing) returns (Messages);
   rpc SubscribeMessageEvents (Nothing) returns (stream MessageEvent);
   rpc NewMessage (Message) returns (Nothing);
 }

@@ -1,7 +1,7 @@
+import grpc from "@grpc/grpc-js";
 import * as common from "chat-api-common";
-import http from "http";
+import { createServer } from "chat-common-grpc";
 import * as yargs from "yargs";
-import * as application from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -28,10 +28,20 @@ async function main(options: MainOptions) {
 
   const context = new common.application.Context();
 
-  const server = http.createServer();
-  const applicationServer = new application.Server(context);
+  const server = createServer({
+    GetMessages(call, callback) {},
+    NewMessage(call, callback) {
+      call.request.value
+    },
+    SubscribeMessageEvents() {},
+  });
 
-  await new Promise<void>((resolve, reject) => server.listen(port, () => resolve()));
+  const listeningPort = await new Promise<number>((resolve, reject) =>
+    server.bindAsync(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure(), (error, port) =>
+      error == null ? resolve(port) : reject(error),
+    ),
+  );
+  server.start();
 
   // server.addListener("request", applicationServer.requestHandler);
 
@@ -50,13 +60,7 @@ async function main(options: MainOptions) {
   } finally {
     console.log("Stopping server...");
 
-    // server.removeListener("request", applicationServer.requestHandler);
-
-    server.closeAllConnections();
-
-    await new Promise<void>((resolve, reject) =>
-      server.close((error) => (error == null ? resolve() : reject(error))),
-    );
+    server.forceShutdown();
 
     console.log("Server stopped");
   }
