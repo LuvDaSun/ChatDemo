@@ -24,5 +24,27 @@
   "settings": {
     "window.title": "ChatDemo",
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "launch": {
+    "version": "0.2.0",
+    "compounds": [
+      {
+        "name": "Launch all servers",
+        "configurations": [
+          {
+            "folder": "ts/chat-web",
+            "name": "server"
+          },
+          {
+            "folder": "ts/chat-api-trpc",
+            "name": "server"
+          },
+          {
+            "folder": "ts/chat-api-gql",
+            "name": "server"
+          }
+        ]
+      }
+    ]
   }
 }
