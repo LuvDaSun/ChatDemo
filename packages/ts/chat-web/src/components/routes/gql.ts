@@ -28,22 +28,32 @@ class Component extends LitElement {
 
   private client: urql.Client = new urql.Client({
     url: "http://localhost:4000",
+    fetchSubscriptions: true,
     exchanges: [urql.fetchExchange],
   });
 
+  private unsubscribe!: () => void;
+
   connectedCallback(): void {
     (async () => {
-      const result = await this.client
-        .query(operations.messagesQuery, {} as types.AllMessagesQueryVariables)
-        .toPromise();
-      const data = result.data as types.AllMessagesQuery;
-      this.messages = immutable.List(data.messages);
+      const subscription = this.client
+        .subscription(
+          operations.subscribeMessagesOperation,
+          {} as types.SubscribeMessagesSubscriptionVariables,
+        )
+        .subscribe((result) => {
+          const date = result.data as types.SubscribeMessagesSubscription;
+        });
+
+      this.unsubscribe = subscription.unsubscribe;
     })();
 
     super.connectedCallback();
   }
 
   disconnectedCallback(): void {
+    this.unsubscribe();
+
     super.disconnectedCallback();
   }
 

@@ -5,11 +5,44 @@ export const resolvers = {
   Query: {
     messages(
       parent: unknown,
-      {}: types.AllMessagesQueryVariables,
+      {}: types.GetMessagesQuery,
       context: common.application.Context,
       info: common.application.Context,
     ) {
       return context.messageService.getMessages();
+    },
+  },
+  Subscription: {
+    messageEvents: {
+      async *subscribe(
+        parent: unknown,
+        {}: types.SubscribeMessagesSubscriptionVariables,
+        context: common.application.Context,
+        info: unknown,
+      ) {
+        const conrtoller = new AbortController();
+        for await (const event of context.messageService.subscribeMessages(conrtoller.signal)) {
+          switch (event.type) {
+            case "message-snapshot":
+              yield {
+                messageEvents: {
+                  __typename: "MessageSnapshot",
+                  messages: event.messages,
+                } as types.MessageSnapshot,
+              };
+              break;
+
+            case "message-add":
+              yield {
+                messageEvents: {
+                  __typename: "MessageNew",
+                  message: event.message,
+                } as types.MessageNew,
+              };
+              break;
+          }
+        }
+      },
     },
   },
   Mutation: {
