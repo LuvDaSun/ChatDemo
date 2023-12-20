@@ -16,7 +16,7 @@
     "build": "tsc --build",
     "clean": "rm -rf ./out && tsc --build --clean",
     "test": "node --test ./out/**/*.test.js",
-    "codegen": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/ src/*.proto"
+    "codegen": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/types/ src/service.proto"
   },
   "repository": {
     "type": "git",
