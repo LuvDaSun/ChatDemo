@@ -28,14 +28,12 @@ test("hello", async () => {
           yield {
             messageEvents: {
               __typename: "MessageSnapshot",
-              type: "message-snapshot",
               messages: ["hi"],
             } as types.MessageSnapshot,
           };
           yield {
             messageEvents: {
               __typename: "MessageNew",
-              type: "message-new",
               message: "ho",
             } as types.MessageNew,
           };
