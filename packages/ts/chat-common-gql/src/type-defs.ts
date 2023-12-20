@@ -12,12 +12,12 @@ export const typeDefs = parse(/* GraphQL */ `
   }
 
   type MessageSnapshot {
-    type: String!
     messages: [String!]!
   }
+
   type MessageNew {
-    type: String!
     message: String!
   }
+
   union MessageEvent = MessageSnapshot | MessageNew
 `);

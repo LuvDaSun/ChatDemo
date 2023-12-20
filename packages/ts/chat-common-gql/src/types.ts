@@ -54,7 +54,7 @@ export type GetMessagesQuery = { __typename?: 'Query', messages: Array<string> }
 export type SubscribeMessagesSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SubscribeMessagesSubscription = { __typename?: 'Subscription', messageEvents: { __typename?: 'MessageNew', message: string } | { __typename?: 'MessageSnapshot', messages: Array<string> } };
+export type SubscribeMessagesSubscription = { __typename?: 'Subscription', messageEvents: { __typename: 'MessageNew', message: string } | { __typename: 'MessageSnapshot', messages: Array<string> } };
 
 export type NewMessageMutationVariables = Exact<{
   message: Scalars['String']['input'];

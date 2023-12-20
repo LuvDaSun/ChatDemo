@@ -9,12 +9,11 @@ export const getMessagesOperation = parse(/* GraphQL */ `
 export const subscribeMessagesOperation = parse(/* GraphQL */ `
   subscription SubscribeMessages {
     messageEvents {
+      __typename
       ... on MessageSnapshot {
-        type
         messages
       }
       ... on MessageNew {
-        type
         message
       }
     }
