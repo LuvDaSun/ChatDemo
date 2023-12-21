@@ -22,14 +22,9 @@
           "beginsPattern": "^bundles\\s+.*",
           "endsPattern": "waiting\\s+for\\s+changes\\.\\.\\.$"
         },
-        "pattern": [
-          {
-            "regexp": "^\\(!\\)\\s+(.*?)$",
-            "file": 0,
-            "location": 0,
-            "message": 1
-          }
-        ]
+        "pattern": {
+          "regexp": "^$"
+        }
       },
       "isBackground": true,
       "group": "build",

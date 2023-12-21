@@ -16,7 +16,18 @@
       "type": "shell",
       "command": ["docker-compose", "up"],
       "isBackground": true,
-      "problemMatcher": []
+      "problemMatcher": [
+        {
+          "background": {
+            "activeOnStart": false,
+            "beginsPattern": ".*",
+            "endsPattern": "^canceled$"
+          },
+          "pattern": {
+            "regexp": "^$"
+          }
+        }
+      ]
     },
     {
       "label": "build-and-proxy",
