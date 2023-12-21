@@ -23,6 +23,8 @@ class Component extends LitElement {
         <app-route-link routeKey="trpc">Trpc</app-route-link>
         -
         <app-route-link routeKey="gql">Gql</app-route-link>
+        -
+        <app-route-link routeKey="grpc">Grpc</app-route-link>
       </p>
     `;
   }

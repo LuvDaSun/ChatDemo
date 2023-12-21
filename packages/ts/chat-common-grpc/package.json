@@ -3,12 +3,21 @@
   "private": true,
   "description": "chat demo api common",
   "type": "module",
-  "main": "out/main.js",
-  "types": "out/main.d.ts",
   "files": [
     "out/*",
-    "src/*"
+    "src/*",
+    "web/*"
   ],
+  "exports": {
+    ".": {
+      "default": "./out/main.js",
+      "types": "./out/main.d.ts"
+    },
+    "./web": {
+      "default": "./web/main.js",
+      "types": "./web/main.d.ts"
+    }
+  },
   "scripts": {
     "prepack": "npm install --no-workspaces",
     "pretest": "tsc --build",
@@ -16,7 +25,8 @@
     "build": "tsc --build",
     "clean": "rm -rf ./out && tsc --build --clean",
     "test": "node --test ./out/**/*.test.js",
-    "codegen": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/types/ src/service.proto"
+    "codegen": "proto-loader-gen-types --longs=String --enums=String --defaults --oneofs --grpcLib=@grpc/grpc-js --outDir=src/types/ src/service.proto",
+    "codegen-web": "protoc --proto_path src --js_out=import_style=commonjs:web --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:web service.proto"
   },
   "repository": {
     "type": "git",
@@ -38,6 +48,7 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.9.13",
     "@types/node": "^20.10.4",
+    "google-protobuf": "^3.21.2",
     "tslib": "^2.6.2"
   }
 }

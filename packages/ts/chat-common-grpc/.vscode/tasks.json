@@ -14,8 +14,12 @@
     {
       "type": "npm",
       "label": "codegen",
-      "script": "codegen",
-      "group": "build"
+      "script": "codegen"
+    },
+    {
+      "type": "npm",
+      "label": "codegen-web",
+      "script": "codegen-web"
     }
   ]
 }
