@@ -52,4 +52,14 @@ or use the vscode task.
 
 This will put the generated code in the `web` folder.
 
-Then, fix the imports, imports to files should end with `.js`.
+Then, fix the imports, imports to files should end with `.js`. So change
+
+```ts
+const proto = require("./service_pb");
+```
+
+into
+
+```ts
+const proto = require("./service_pb.js");
+```
