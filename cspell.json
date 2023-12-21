@@ -1,14 +1,6 @@
 {
   "version": "0.2",
-  "words": [
-    "fanout",
-    "goodrouter",
-    "Trpc"
-  ],
+  "words": ["fanout", "goodrouter", "Trpc", "urql", "oneof", "oneofs", "proto"],
   "useGitignore": true,
-  "files": [
-    "packages/rs/*/src/**",
-    "packages/ts/*/src/**",
-    "packages/oas/*/src/**"
-  ]
+  "files": ["packages/rs/*/src/**", "packages/ts/*/src/**", "packages/oas/*/src/**"]
 }

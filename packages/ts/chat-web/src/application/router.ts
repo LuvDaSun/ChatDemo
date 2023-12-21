@@ -9,6 +9,7 @@ export function createRouter() {
   router.insertRoute("local", "/local");
   router.insertRoute("trpc", "/trpc");
   router.insertRoute("gql", "/gql");
+  router.insertRoute("grpc", "/grpc");
 
   return router;
 }

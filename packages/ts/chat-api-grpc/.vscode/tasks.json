@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "label": "build",
+      "script": "build",
+      "problemMatcher": ["$tsc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "proxy",
+      "type": "shell",
+      "command": ["docker-compose", "up"],
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*",
+            "endsPattern": "^Attaching\\s+to"
+          },
+          "pattern": {
+            "regexp": "^$"
+          }
+        }
+      ]
+    },
+    {
+      "label": "build-and-proxy",
+      "dependsOn": ["build", "proxy"]
+    }
+  ]
+}

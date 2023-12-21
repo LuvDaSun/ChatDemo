@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+service ChatDemo {
+  rpc GetMessages (Nothing) returns (Messages);
+  rpc SubscribeMessageEvents (Nothing) returns (stream MessageEvent);
+  rpc NewMessage (Message) returns (Nothing);
+}
+
+message Message {
+  string value = 1;
+}
+
+message Messages {
+  repeated string values = 1;
+}
+
+message MessageEvent {
+  oneof type {
+    MessageSnapshot snapshot = 1;
+    MessageNew new = 2;
+  }
+}
+
+message MessageSnapshot {
+  repeated string messages = 1;
+}
+
+message MessageNew {
+  string message = 1;
+}
+
+message Nothing {
+
+}

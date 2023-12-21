@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  envoy:
+    network_mode: host
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    image: grpcweb/envoy:1.3.0
+    volumes:
+      - ./mnt:/mnt
+    command:
+      - --config-path
+      - /mnt/envoy.yaml

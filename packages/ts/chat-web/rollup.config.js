@@ -15,8 +15,8 @@ export default defineConfig({
   context: "window",
 
   plugins: [
-    nodeResolve({ browser: true, mainFields: ["browser"] }),
     commonjs(),
+    nodeResolve({ browser: true, mainFields: ["browser"] }),
     replace({
       values: {
         "process.env.NODE_ENV": JSON.stringify("production"),

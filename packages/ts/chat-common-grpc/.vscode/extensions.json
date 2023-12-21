@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "orsenkucher.vscode-graphql",
+    "graphql.vscode-graphql",
+    "zxh404.vscode-proto3"
+  ],
+  "unwantedRecommendations": []
+}
