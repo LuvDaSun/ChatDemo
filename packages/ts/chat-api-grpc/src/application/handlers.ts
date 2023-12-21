@@ -9,7 +9,8 @@ export function createHandlers(context: common.application.Context): types.ChatD
     },
     NewMessage(call, callback) {
       context.messageService.newMessage(call.request.value);
-      callback(null);
+      console.log(call.request.value);
+      callback(null, {});
     },
     async SubscribeMessageEvents(call) {
       const controller = new AbortController();

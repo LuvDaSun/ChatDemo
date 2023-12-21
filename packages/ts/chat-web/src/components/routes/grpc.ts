@@ -26,7 +26,7 @@ class Component extends LitElement {
     `;
   }
 
-  private client = new commonGrpc.ChatDemoClient("localhost:50051");
+  private client = new commonGrpc.ChatDemoClient("http://localhost:9900");
 
   private stream!: ClientReadableStream<commonGrpc.MessageEvent>;
 
@@ -59,8 +59,10 @@ class Component extends LitElement {
 
     (async () => {
       const response = await new Promise<commonGrpc.Nothing>((resolve, reject) =>
-        this.client.newMessage({ value: model.message }, undefined, (error, response) =>
-          error == null ? resolve(response) : reject(error),
+        this.client.newMessage(
+          new commonGrpc.Message().setValue(model.message),
+          undefined,
+          (error, response) => (error == null ? resolve(response) : reject(error)),
         ),
       );
     })();

@@ -2,6 +2,7 @@ import grpc from "@grpc/grpc-js";
 import * as common from "chat-api-common";
 import { createServer } from "chat-common-grpc";
 import * as yargs from "yargs";
+import { createHandlers } from "../application/index.js";
 
 export function registerServerProgram(argv: yargs.Argv) {
   return argv.command(
@@ -27,14 +28,9 @@ async function main(options: MainOptions) {
   console.log("Starting server...");
 
   const context = new common.application.Context();
+  const handlers = createHandlers(context);
 
-  const server = createServer({
-    GetMessages(call, callback) {},
-    NewMessage(call, callback) {
-      call.request.value
-    },
-    SubscribeMessageEvents() {},
-  });
+  const server = createServer(handlers);
 
   const listeningPort = await new Promise<number>((resolve, reject) =>
     server.bindAsync(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure(), (error, port) =>
