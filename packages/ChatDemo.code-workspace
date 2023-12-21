@@ -27,10 +27,6 @@
     {
       "name": "ts/chat-common-grpc",
       "path": "./ts/chat-common-grpc"
-    },
-    {
-      "name": "docker/chat-proxy-grpc",
-      "path": "./docker/chat-proxy-grpc"
     }
   ],
   "settings": {
@@ -57,10 +53,6 @@
           },
           {
             "folder": "ts/chat-api-grpc",
-            "name": "server"
-          },
-          {
-            "folder": "docker/chat-proxy-grpc",
             "name": "server"
           }
         ]

@@ -15,7 +15,7 @@
       "type": "npm",
       "label": "codegen",
       "script": "codegen",
-      "group": "build"
+      "problemMatcher": []
     }
   ]
 }

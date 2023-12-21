@@ -14,12 +14,21 @@
     {
       "type": "npm",
       "label": "codegen",
-      "script": "codegen"
+      "script": "codegen",
+      "problemMatcher": []
     },
     {
       "type": "npm",
       "label": "codegen-web",
-      "script": "codegen-web"
+      "script": "codegen-web",
+      "problemMatcher": []
+    },
+    {
+      "label": "proxy",
+      "type": "shell",
+      "command": ["docker-compose", "up"],
+      "isBackground": true,
+      "problemMatcher": []
     }
   ]
 }

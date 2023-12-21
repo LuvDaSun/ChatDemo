@@ -10,6 +10,17 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "proxy",
+      "type": "shell",
+      "command": ["docker-compose", "up"],
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "build-and-proxy",
+      "dependsOn": ["build", "proxy"]
     }
   ]
 }
