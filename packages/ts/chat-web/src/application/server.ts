@@ -5,16 +5,34 @@ import path from "path";
 import { projectRoot } from "../utils/root.js";
 import { createRouter } from "./router.js";
 
+/**
+ * This is the server that will serve the front-end
+ */
 export class Server {
   router = createRouter();
 
+  /**
+   * this is a requestHandler that is compatible with request event that node http servers
+   * send
+   *
+   * @param request http request
+   * @param response htt response
+   */
   public requestHandler = (request: http.IncomingMessage, response: http.ServerResponse) => {
     this.innerRequestHandler(request, response).catch((error) => {
+      // any error will be a 500
       response.statusCode = 500;
       response.end();
     });
   };
 
+  /**
+   * async request handler, to be called from the request handler.
+   *
+   * @param request
+   * @param response
+   * @returns promise that resolves when the request is ready.
+   */
   private async innerRequestHandler(request: http.IncomingMessage, response: http.ServerResponse) {
     const url = request.url;
     assert(url);
@@ -27,7 +45,7 @@ export class Server {
       return;
     }
 
-    // If is matches a file, send the file!
+    // If it matches a file, send the file!
     const filePath = path.join(projectRoot, "bundle", url);
     const fileStat = await fs.stat(filePath);
     if (fileStat.isFile()) {

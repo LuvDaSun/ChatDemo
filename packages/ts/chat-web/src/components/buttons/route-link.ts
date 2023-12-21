@@ -8,35 +8,35 @@ export { Component as RouteLink };
 @customElement(componentName)
 class Component extends LitElement {
   @property()
+  /**
+   * name or key of the route where this link will take us
+   */
   accessor routeKey = "";
 
   @property()
+  /**
+   * optional parameters for the route
+   */
   accessor routeParameters: Record<string, string> = {};
 
   @property()
+  /**
+   * optional state for the route, this is not reflected in the generated url
+   */
   accessor routeState: Partial<RouteState> = {};
 
   @property()
+  /**
+   * if we follow this link, will is replace the history entry or create a new one?
+   */
   accessor replace = false;
 
   render() {
     const href = routing.getHref(this.routeKey, this.routeParameters);
-    return html`<a href=${href}><slot></slot></a>`;
+    return html`<a href=${href} @click=${this.onClickAnchor}><slot></slot></a>`;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.addEventListener("click", this.onClick);
-  }
-
-  disconnectedCallback() {
-    this.removeEventListener("click", this.onClick);
-
-    super.disconnectedCallback();
-  }
-
-  private onClick = (event: Event) => {
+  private onClickAnchor = (event: Event) => {
     const href = routing.getHref(this.routeKey, this.routeParameters);
 
     event.preventDefault();
