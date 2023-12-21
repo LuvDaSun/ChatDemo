@@ -2,7 +2,7 @@
 
 This demonstrates how one could use three different api protocols to build a very simple chat application.
 
-There is a workspace file for visual studio on the packages folder. If you open that workspace there is a launch configuration that is called `Launch all servers`. This will launch all servers.
+There is a workspace file for visual studio. If you open that workspace there is a launch configuration that is called `Launch all servers`. This will launch all servers.
 
 Then run the `Chrome`, `Firefox` or `Edge` launch configuratiojn to start.
 
