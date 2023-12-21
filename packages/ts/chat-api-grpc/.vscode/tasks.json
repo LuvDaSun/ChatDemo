@@ -19,9 +19,9 @@
       "problemMatcher": [
         {
           "background": {
-            "activeOnStart": false,
+            "activeOnStart": true,
             "beginsPattern": ".*",
-            "endsPattern": "^canceled$"
+            "endsPattern": "^Attaching\\s+to"
           },
           "pattern": {
             "regexp": "^$"
