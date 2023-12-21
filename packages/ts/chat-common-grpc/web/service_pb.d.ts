@@ -1,6 +1,4 @@
-import * as jspb from 'google-protobuf'
-
-
+import * as jspb from "google-protobuf";
 
 export class Message extends jspb.Message {
   getValue(): string;
@@ -16,8 +14,8 @@ export class Message extends jspb.Message {
 
 export namespace Message {
   export type AsObject = {
-    value: string,
-  }
+    value: string;
+  };
 }
 
 export class Messages extends jspb.Message {
@@ -36,8 +34,8 @@ export class Messages extends jspb.Message {
 
 export namespace Messages {
   export type AsObject = {
-    valuesList: Array<string>,
-  }
+    valuesList: Array<string>;
+  };
 }
 
 export class MessageEvent extends jspb.Message {
@@ -58,16 +56,19 @@ export class MessageEvent extends jspb.Message {
   static toObject(includeInstance: boolean, msg: MessageEvent): MessageEvent.AsObject;
   static serializeBinaryToWriter(message: MessageEvent, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): MessageEvent;
-  static deserializeBinaryFromReader(message: MessageEvent, reader: jspb.BinaryReader): MessageEvent;
+  static deserializeBinaryFromReader(
+    message: MessageEvent,
+    reader: jspb.BinaryReader,
+  ): MessageEvent;
 }
 
 export namespace MessageEvent {
   export type AsObject = {
-    snapshot?: MessageSnapshot.AsObject,
-    pb_new?: MessageNew.AsObject,
-  }
+    snapshot?: MessageSnapshot.AsObject;
+    pb_new?: MessageNew.AsObject;
+  };
 
-  export enum TypeCase { 
+  export enum TypeCase {
     TYPE_NOT_SET = 0,
     SNAPSHOT = 1,
     NEW = 2,
@@ -85,13 +86,16 @@ export class MessageSnapshot extends jspb.Message {
   static toObject(includeInstance: boolean, msg: MessageSnapshot): MessageSnapshot.AsObject;
   static serializeBinaryToWriter(message: MessageSnapshot, writer: jspb.BinaryWriter): void;
   static deserializeBinary(bytes: Uint8Array): MessageSnapshot;
-  static deserializeBinaryFromReader(message: MessageSnapshot, reader: jspb.BinaryReader): MessageSnapshot;
+  static deserializeBinaryFromReader(
+    message: MessageSnapshot,
+    reader: jspb.BinaryReader,
+  ): MessageSnapshot;
 }
 
 export namespace MessageSnapshot {
   export type AsObject = {
-    messagesList: Array<string>,
-  }
+    messagesList: Array<string>;
+  };
 }
 
 export class MessageNew extends jspb.Message {
@@ -108,8 +112,8 @@ export class MessageNew extends jspb.Message {
 
 export namespace MessageNew {
   export type AsObject = {
-    message: string,
-  }
+    message: string;
+  };
 }
 
 export class Nothing extends jspb.Message {
@@ -122,7 +126,5 @@ export class Nothing extends jspb.Message {
 }
 
 export namespace Nothing {
-  export type AsObject = {
-  }
+  export type AsObject = {};
 }
-

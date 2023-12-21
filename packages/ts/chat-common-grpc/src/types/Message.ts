@@ -1,10 +1,9 @@
 // Original file: src/service.proto
 
-
 export interface Message {
-  'value'?: (string);
+  value?: string;
 }
 
 export interface Message__Output {
-  'value': (string);
+  value: string;
 }
